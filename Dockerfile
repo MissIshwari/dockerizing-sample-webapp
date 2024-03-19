@@ -1,19 +1,14 @@
-#    - Use an official Nginx base image.
-
-#    - Copy the index.html and nginx.conf files into the appropriate location in the container.
-
-#    - Ensure that the Nginx server is started when the container is run.
-
+#Base image is nginx over the underlying linux system of the container
 FROM nginx:alpine
 
+#Copying index.html page to the nginx installation, serving the webpage
 COPY index.html /usr/share/nginx/html
 
+#Copying nginx.conf to the default configuration of nginx installation
 COPY nginx.conf /usr/share/nginx/conf
 
+#Exposing port 80 of the nginx container, to view webpage hosted over it.
 EXPOSE 80
 
-RUN ls
-
-RUN cat /usr/share/nginx/html/index.html 
-
+#Starting nginx server
 CMD ["nginx","-g","daemon off;"]
